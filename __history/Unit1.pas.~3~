@@ -1,0 +1,127 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Um: TButton;
+    Dois: TButton;
+    Tres: TButton;
+    Quatro: TButton;
+    Cinco: TButton;
+    Seis: TButton;
+    Sete: TButton;
+    Oito: TButton;
+    Nove: TButton;
+    Zero: TButton;
+    Virgula: TButton;
+    Mais: TButton;
+    Menos: TButton;
+    Multiplicar: TButton;
+    Dividir: TButton;
+    Igual: TButton;
+    lLimpar: TButton;
+    Visor: TEdit;
+    procedure UmClick(Sender: TObject);
+    procedure MaisClick(Sender: TObject);
+    procedure MenosClick(Sender: TObject);
+    procedure MultiplicarClick(Sender: TObject);
+    procedure DividirClick(Sender: TObject);
+    procedure VirgulaClick(Sender: TObject);
+    procedure lLimparClick(Sender: TObject);
+    procedure IgualClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  valor1 : real;
+  valor2 : real;
+  funcao : integer;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TForm1.UmClick(Sender: TObject);
+begin
+ visor.text := visor.Text + (Sender as TButton).Caption
+end;
+procedure TForm1.MaisClick(Sender: TObject);
+begin
+ valor1 := StrToFloat(visor.Text);
+ visor.Text := '+';
+ funcao := 1;
+end;
+procedure TForm1.MenosClick(Sender: Tobject);
+begin
+  valor2 := StrToFloat(visor.Text);
+  visor.Text := '-';
+  funcao := 2;
+end;
+procedure TForm1.MultiplicarClick(Sender: TObject);
+begin
+ valor1 := StrToFloat(visor.Text);
+ visor.Text := '*';
+ funcao := 3;
+ end;
+procedure TForm1.DividirClick(Sender: TObject);
+begin
+ valor1 := StrToFloat(visor.Text);
+ visor.Text := '/';
+ funcao := 4;
+end;
+procedure TForm1.VirgulaClick(Sender: TObject);
+begin
+ valor1 := StrToFloat(visor.Text);
+ visor.Text := ',';
+ funcao := 5;
+end;
+procedure TForm1.lLimparClick(Sender: TObject);
+begin
+ visor.Text := '';
+end;
+procedure TForm1.IgualClick(Sender: TObject);
+var
+ soma:real;
+ begin
+   valor2 := StrToFloat(visor.Text);
+   case (funcao) of
+     1:
+      begin
+       soma:= valor1+valor2;
+       visor.Text := FloatToStr(soma)
+      end;
+     2:
+      begin
+       soma:= valor1-valor2;
+       visor.Text := FloatToStr(soma)
+      end;
+     3:
+      begin
+        soma:= valor1*valor2;
+        visor.Text := FloatToStr(soma)
+      end;
+     4:
+      begin
+       if (valor2<>0) then
+        begin
+         soma:= valor1/valor2;
+         visor.Text := FloatToStr(soma)
+        end
+        else
+         begin
+           ShowMessage('Divisão por numero negativo ou zerado')
+         end;
+      end;
+   end;
+ end;
+end.
